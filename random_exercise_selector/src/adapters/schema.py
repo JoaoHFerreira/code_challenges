@@ -24,3 +24,4 @@ class ChallengesTracker(Base):
     language = Column(String, nullable=False)
     start_date = Column(DateTime(timezone=True), server_default=func.now())
     end_date = Column(DateTime(timezone=True), nullable=True)
+    is_done = Column(Boolean, nullable=False, server_default="0")
