@@ -4,6 +4,7 @@ from src.adapters.models import CodeChallenges
 
 
 class RandomSelector:
+    # TODO: Consider refactor this class
     def __init__(self):
         self.challenges = self._get_challenges()
 
