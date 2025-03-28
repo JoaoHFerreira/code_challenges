@@ -1,0 +1,45 @@
+[project]
+name = "random-selector"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "ipython>=9.0.2",
+    "ruff>=0.11.2",
+    "sqlalchemy>=2.0.39",
+    "tool>=0.8.0",
+]
+
+[tool.uv]
+# Use Ruff as the formatter
+formatter = "ruff"
+
+[tool.ruff]
+line-length = 88
+target-version = "py312"
+
+[tool.ruff.format]
+# Black-compatible formatting
+quote-style = "double"
+indent-style = "space"
+line-ending = "lf"
+
+[tool.ruff.lint]
+# Enable Flake8-compatible rules inside Ruff
+select = [
+    "E",    # Pycodestyle (Flake8)
+    "F",    # Pyflakes (Flake8)
+    "W",    # Warnings
+    "C90",  # McCabe complexity (Flake8 plugin)
+    "N",    # Naming conventions (Flake8 plugin)
+    "B",    # Bugbear (Flake8 plugin)
+    "SIM",  # Simplify (Flake8-simplify)
+]
+fixable = ["I"]
+
+[tool.isort]
+profile = "black"  # Black-compatible import sorting
+combine_as_imports = true
+force_sort_within_sections = true
+known_first_party = ["random_selector"]  # Adjust based on your project structure
