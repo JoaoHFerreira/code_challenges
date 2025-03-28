@@ -1,0 +1,97 @@
+# ==========================
+# General System Files
+# ==========================
+.DS_Store
+Thumbs.db
+*.log
+*.lock
+*.swp
+*.swo
+*.swn
+*.bak
+*.tmp
+
+# ==========================
+# Git & Version Control
+# ==========================
+.git/
+
+
+# ==========================
+# Python
+# ==========================
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.egg-info/
+dist/
+build/
+.env
+*.sqlite3
+*.db
+.ipynb_checkpoints/
+
+# ==========================
+# uv Package Manager
+# ==========================
+.uv/
+uv.lock
+
+# ==========================
+# Virtual Environments
+# ==========================
+venv/
+.pip_cache/
+pip-log.txt
+pip-delete-this-directory.txt
+
+# ==========================
+# Jupyter Notebooks
+# ==========================
+.ipynb_checkpoints/
+
+# ==========================
+# Docker
+# ==========================
+*.dockerignore
+Dockerfile*
+docker-compose.yml
+.docker/
+
+# ==========================
+# AWS & Cloud
+# ==========================
+*.pem
+*.key
+*.crt
+*.tfstate
+.terraform/
+.aws/
+.gcloud/
+.azure/
+
+# ==========================
+# Database & Migrations
+# ==========================
+*.sqlite
+*.db
+migrations/
+seeds/
+
+# ==========================
+# IDEs & Editors
+# ==========================
+.vscode/
+.idea/
+*.iml
+*.sublime-workspace
+*.sublime-project
+
+# ==========================
+# Miscellaneous
+# ==========================
+*.bak
+*.old
+*.orig
+*.rej
