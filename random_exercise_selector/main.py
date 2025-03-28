@@ -4,6 +4,10 @@ from src.core.random_selector import RandomSelector
 
 
 def main():
+    # TODO: Create .gitignore
+    # TODO: Type hints
+    # TODO: Unit tests
+    # TODO: Integration tests
     start_engine()
     repository.fill_code_challenges_table()
     save_previous_progress()
@@ -12,8 +16,12 @@ def main():
 
 def save_previous_progress():
     challenges_tracker_id = repository.get_latest_challenges_tracker_id()
+
     if challenges_tracker_id:
-        repository.update_challenges_tracker(challenges_tracker_id)
+        # TODO: Clarify the challenge that are being worked
+        option = input("Did you finish the last challenge?y/n\n").strip()
+        is_done = 1 if option == "y" else 0
+        repository.update_challenges_tracker(challenges_tracker_id, is_done)
 
 
 def choose_random():
@@ -21,6 +29,8 @@ def choose_random():
     exercise_tbd = random_choices.random_exercise
     language_tbd = random_choices.random_language
 
+
+    # TODO: Logs instead, create a module inside config and also specifc for more granular msgs
     print(f"""
         Exercise Name: {exercise_tbd.exercise_name}
         Exercise Description: {exercise_tbd.exercise_description}

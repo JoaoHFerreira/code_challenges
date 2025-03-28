@@ -4,6 +4,7 @@ from src.config.database import get_engine
 
 
 def fill_code_challenges_table():
+    # TODO: Refactor repository to be table oriented and not depeding exlusively on function name
     try:
         if is_code_challenges_filled():
             return
@@ -99,13 +100,15 @@ def get_latest_challenges_tracker_id():
     return last_id
 
 
-def update_challenges_tracker(challenges_tracker_id):
+def update_challenges_tracker(challenges_tracker_id, is_done):
     engine = get_engine()
     with engine.connect() as connection:
         connection.execute(
             text(f"""
                 UPDATE challenges_tracker
-                SET end_date = CURRENT_TIMESTAMP
+                SET 
+                    end_date = CURRENT_TIMESTAMP,
+                    is_done = {is_done}
                 WHERE _id = {challenges_tracker_id}
             """)
         )
