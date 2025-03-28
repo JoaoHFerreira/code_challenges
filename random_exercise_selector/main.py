@@ -12,7 +12,8 @@ def main():
 
 def save_previous_progress():
     challenges_tracker_id = repository.get_latest_challenges_tracker_id()
-    repository.update_challenges_tracker(challenges_tracker_id)
+    if challenges_tracker_id:
+        repository.update_challenges_tracker(challenges_tracker_id)
 
 
 def choose_random():
