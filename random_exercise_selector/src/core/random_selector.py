@@ -1,0 +1,39 @@
+import random
+from src.adapters import repository
+from src.adapters.models import CodeChallenges
+
+
+class RandomSelector:
+    def __init__(self):
+        self.challenges = self._get_challenges()
+
+    @property
+    def random_exercise(self):
+        return self.challenges[random.randint(0, len(self.challenges) - 1)]
+
+    @property
+    def random_language(self):
+        available_languages = [
+            value.get("language")
+            for value in list(
+                filter(
+                    lambda x: not x["bool"],
+                    [
+                        {"language": "golang", "bool": self.random_exercise.golang},
+                        {"language": "rustlang", "bool": self.random_exercise.rustlang},
+                        {"language": "lualang", "bool": self.random_exercise.lualang},
+                        {
+                            "language": "elixirlang",
+                            "bool": self.random_exercise.elixirlang,
+                        },
+                    ],
+                )
+            )
+        ]
+        return random.choice(available_languages)
+
+    def _get_challenges(self):
+        return [
+            CodeChallenges(*row)
+            for row in repository.get_all_available_code_challenges()
+        ]
