@@ -1,0 +1,6 @@
+1. Implemetn linked list
+2. Hannoi Tower
+3. Recursoin traditional problems
+4. Create a way to easily insert a new problem.
+5. Create a new category problem called, problem_type in the schemas and also models
+6. everytime i run i should be abble to choose a category of problem or just land in the default random method

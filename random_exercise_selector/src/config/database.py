@@ -1,3 +1,4 @@
+from sqlalchemy.engine import Engine
 from sqlalchemy import create_engine
 from src.adapters.schema import Base
 
@@ -9,5 +10,5 @@ def start_engine():
     print("Table created successfully.")
 
 
-def get_engine(db_path="code-challenges.db"):
+def get_engine(db_path="code-challenges.db") -> Engine:
     return create_engine(f"sqlite:///{db_path}")

@@ -1,9 +1,10 @@
 from sqlalchemy import text
 from sqlalchemy.exc import SQLAlchemyError
 from src.config.database import get_engine
+from src.adapters.models import CodeChallenges
 
 
-def fill_code_challenges_table():
+def fill_code_challenges_table() -> None:
     # TODO: Refactor repository to be table oriented and not depeding exlusively on function name
     try:
         if is_code_challenges_filled():
@@ -33,7 +34,7 @@ def fill_code_challenges_table():
         print(f"An unexpected error occurred: {e}")
 
 
-def is_code_challenges_filled():
+def is_code_challenges_filled() -> bool:
     engine = get_engine()
     with engine.connect() as connection:
         result = connection.execute(text("SELECT _id FROM code_challenges LIMIT 1"))
@@ -42,7 +43,7 @@ def is_code_challenges_filled():
     return bool(first_row)
 
 
-def get_all_available_code_challenges():
+def _get_all_available_code_challenges() -> list:
     engine = get_engine()
     with engine.connect() as connection:
         # TODO: Write queries using internals sqlalchemy
@@ -58,11 +59,29 @@ def get_all_available_code_challenges():
                 OR rustlang = 0
         """)
         )
-        rows = result.fetchall()
-    return rows
+    return result.fetchall()
+
+def get_available_code_challenges() -> list[CodeChallenges]:
+    return [
+        CodeChallenges(*row)
+        for row in _get_all_available_code_challenges()
+    ]
+
+def insert_code_challenges(exercise_name, exercise_description) -> None:
+    engine = get_engine()
+    
+    with engine.connect() as connection:
+        connection.execute(
+            text(f"""
+                INSERT INTO code_challenges
+                 (exercise_name, exercise_description) VALUES
+                 ('{exercise_name}', '{exercise_description}')
+            """)
+        )
+        connection.commit()
 
 
-def update_code_challenges(language_tbd, exercise_tbd):
+def update_code_challenges(language_tbd, exercise_tbd) -> None:
     engine = get_engine()
 
     with engine.connect() as connection:
@@ -76,7 +95,7 @@ def update_code_challenges(language_tbd, exercise_tbd):
         connection.commit()
 
 
-def insert_challenges_tracker(code_challenge_id, language):
+def insert_challenges_tracker(code_challenge_id, language) -> None:
     engine = get_engine()
     with engine.connect() as connection:
         # TODO: Write queries using internals sqlalchemy
@@ -90,7 +109,7 @@ def insert_challenges_tracker(code_challenge_id, language):
         connection.commit()
 
 
-def get_latest_challenges_tracker_id():
+def get_latest_challenges_tracker_id() -> int:
     engine = get_engine()
     with engine.connect() as connection:
         # TODO: Write queries using internals sqlalchemy
@@ -100,7 +119,7 @@ def get_latest_challenges_tracker_id():
     return last_id
 
 
-def update_challenges_tracker(challenges_tracker_id, is_done):
+def update_challenges_tracker(challenges_tracker_id, is_done) -> None:
     engine = get_engine()
     with engine.connect() as connection:
         connection.execute(
