@@ -1,5 +1,4 @@
 INSERT INTO code_challenges (exercise_name, exercise_description) VALUES
-    ('Random Exercise Selector', 'One app that given available languages and available exercises chooses randomly an exercise to be done in a given language.'),
     ('Stack Implementation (LIFO)', 'Build a stack from scratch using an array or linked list.'),
     ('Queue Implementation (FIFO)', 'Implement a queue and a circular queue.'),
     ('Linked List Operations', 'Implement a singly and doubly linked list with insertion, deletion, and search.'),

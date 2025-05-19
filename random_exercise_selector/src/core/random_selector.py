@@ -6,14 +6,14 @@ from src.adapters.models import CodeChallenges
 class RandomSelector:
     # TODO: Consider refactor this class
     def __init__(self):
-        self.challenges = self._get_challenges()
+        self.challenges = repository.get_available_code_challenges()
 
     @property
-    def random_exercise(self):
+    def random_exercise(self) -> CodeChallenges:
         return self.challenges[random.randint(0, len(self.challenges) - 1)]
 
     @property
-    def random_language(self):
+    def random_language(self) -> str:
         available_languages = [
             value.get("language")
             for value in list(
@@ -33,8 +33,3 @@ class RandomSelector:
         ]
         return random.choice(available_languages)
 
-    def _get_challenges(self):
-        return [
-            CodeChallenges(*row)
-            for row in repository.get_all_available_code_challenges()
-        ]
