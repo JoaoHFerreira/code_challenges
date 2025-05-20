@@ -1,0 +1,8 @@
+Key Operations,     STATE
+
+New                 initstack
+Push                done
+Pop_return          done 
+Peek                done
+IsEmpty             DONE
+Size                DONE
