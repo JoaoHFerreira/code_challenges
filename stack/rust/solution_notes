@@ -1,0 +1,9 @@
+Key Operations,     STATE
+
+New                 DONE
+Push                DONE
+Pop_return          DONE  
+pop, empty stack    DONE  
+Peek                DONE
+IsEmpty             DONE
+Size                DONE
