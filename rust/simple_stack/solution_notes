@@ -1,9 +1,0 @@
-Key Operations,     STATE
-
-New                 DONE
-Push                DONE
-Pop_return          DONE  
-pop, empty stack    DONE  
-Peek                TBD
-IsEmpty             TBD
-Size                TBD
